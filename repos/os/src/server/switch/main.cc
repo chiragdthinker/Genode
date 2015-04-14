@@ -1,7 +1,7 @@
 /*
- * \brief  Testing 'printf()' with negative integer
- * \author Christian Prochaska
- * \date   2012-04-20
+ * \brief  Testing 'switch_nw_sw()' 
+ * \author Chirag Garg(IIT Madras, India)
+ * \date   2015-04-14
  *
  */
 
