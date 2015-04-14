@@ -1,0 +1,43 @@
+#
+# \brief  Virtual-machine monitor demo
+# \author Chirag Garg
+# \date   2015-03-26
+#
+
+build "core init server/switch"
+create_boot_directory
+
+
+install_config {
+<config verbose="yes">
+	<parent-provides>
+		<service name="ROM"/>
+		<service name="RAM"/>
+		<service name="IRQ"/>
+		<service name="IO_MEM"/>
+		<service name="CAP"/>
+		<service name="PD"/>
+		<service name="RM"/>
+		<service name="CPU"/>
+		<service name="LOG"/>
+		<service name="SIGNAL"/>
+		<service name="VM"/>
+	</parent-provides>
+	<default-route>
+		<any-service><any-child/><parent/></any-service>
+	</default-route>
+	<start name="switch">
+		<resource name="RAM" quantum="10M"/>
+	</start>
+</config>
+}
+
+build_boot_image "core init switch"
+
+#
+# Execute test case
+#
+
+run_genode_until {-1 = -1 = -1} 10
+
+puts "Test succeeded"
